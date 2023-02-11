@@ -1,0 +1,1086 @@
+/* Сброс всего. Начальная настройка */
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    line-height: 1;
+    font-size: 16px;
+    color: #000;
+}
+
+/* обложка всего контента / Main wrap */
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+}
+
+/* ограничивающий контейнер для всех случаев / wrap Container */
+._container {
+    max-width: 78%;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+}
+
+
+/* ---------------------header-------------------------------------------- */
+
+.fonts {
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 22;
+    background-color: black;
+    font-family: Inter, sans-serif;
+
+}
+
+/* Плашка для бургер меню / Burger Menu */
+.header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 2;
+}
+
+.header_body {
+    position: relative;
+    display: flex;
+    height: 80px;
+    align-items: center;
+}
+
+.header_logo {
+    position: relative;
+    z-index: 3;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.menu {
+    width: 69%;
+}
+
+.menu_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    /* чтобы выводить меню поверх плашки при уменьшении экрана */
+}
+
+.menu_list li {
+    width: 91%;
+    margin: 0px 0px 0px 15px;
+    /* Равняем отступ с логотипом, который задан у логотипа паддингом контейнера - 15 пкс, делаем марджин у каждого ли - 15пск */
+}
+
+/* Ссылка "Контакт" / "Contact" link-button */
+li:last-child {
+
+    border: 1px solid #098A5B;
+    background-color: transparent;
+    color: #098A5B;
+    padding: 15px 15px 15px 15px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+
+li:last-child:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+/* Меню ховер / Menu with hover effect */
+
+.menu_link:hover {
+
+    border-bottom: 2px solid #098A5B;
+    transition: all .4s ease-in-out;
+    color: #30dd8a;
+    box-shadow: 0px 1px 28px 30px 0 rgba(23, 168, 108, 0.75);
+
+}
+
+.burger_menu {
+    display: none;
+}
+
+.search {
+    z-index: 3;
+    margin-left: 16px;
+}
+
+.group {
+    display: flex;
+    justify-content: flex-end;
+    width: 91%;
+    align-items: center;
+
+}
+
+.header_bodyWrapp {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+@media screen and (max-width: 784px) {
+
+    .header_logo {
+        font-size: 1.7rem;
+    }
+
+    /* не даем скроллить страницу во время открытого меню бургера / Locking body while menu is open */
+    body.lock {
+        overflow: hidden;
+    }
+
+    /* Создаем бургер меню в маленьком экране / Menu Burger in small screen */
+    .burger_menu {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 3;
+    }
+
+    .burger_menu::before,
+    .burger_menu::after {
+        content: '';
+        background-color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+
+    .burger_menu::before {
+        top: 0;
+    }
+
+    .burger_menu::after {
+        bottom: 0;
+    }
+
+    .burger_menu span {
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+    }
+
+    /* разворачиваем класс, который создается в JS файле "актив" с плашками, которые мы создали ранее before и after, чтобы менять символ из трех полос на крест в активном состоянии / style classe gets created with JS */
+    .burger_menu.active::before {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+
+    .burger_menu.active::after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+
+    .burger_menu.active span {
+        transform: scale(0);
+    }
+
+    /* подгоняем меню в маленьком экране / making menu responsive in small screen */
+    .menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background: rgb(9, 138, 91);
+        background: radial-gradient(circle, rgba(9, 138, 91, 1) 0%, rgba(0, 0, 0, 1) 60%);
+        padding: 70px 0 0 0;
+        /* делаем отступ сверху, чтобы изменить позицию меню ниже */
+        transition: all 0.2s ease 0s;
+        overflow: auto;
+    }
+
+    .menu.active {
+        top: 0;
+    }
+
+    .header_body {
+        height: 50px;
+    }
+
+    .menu_list {
+        display: block;
+    }
+
+    .menu_list li {
+        margin: 0px 0px 20px 15px;
+        /* добавляем марджин для отступа вниз между пунктами меню в бургерном виде */
+    }
+
+    .menu_link {
+        font-size: 24px;
+    }
+}
+
+
+/* ----------------------------"WE ARE DIGITAL AGENCY" SECTION --------------------------*/
+
+.da_section {
+    padding-top: 190px;
+    background-image: url('./resources/background1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+@media screen and (max-width: 866px) {
+
+    .text {
+
+        align-items: center;
+    }
+
+
+    .text h1 {
+        text-align: center;
+    }
+}
+
+
+.text {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.text p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #098A5B;
+    text-transform: uppercase;
+}
+
+.text h1 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+.getStart {
+    border: 1px solid #098A5B;
+    background-color: transparent;
+    color: #098A5B;
+    width: 193px;
+    height: 75px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: uppercase;
+}
+
+.getStart:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+    cursor: pointer;
+}
+
+.boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2rem 0 2rem 0;
+}
+
+.box {
+    background: #313131;
+    border: 2px solid #098A5B;
+    display: flex;
+    flex-direction: column;
+    width: 294px;
+    min-height: 240px;
+    padding: 25px 25px 25px 14px;
+    gap: 25px;
+    position: relative;
+}
+
+.box_img {
+    display: block;
+    max-width: 58px;
+    max-height: 58px;
+
+}
+
+.box_h {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    position: relative;
+}
+
+/* Создать линию снизу с помощью псевдокласса after / Making line below section with after pseudo class */
+.box_h::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #098A5B;
+    width: 73px;
+    height: 2px;
+    margin-top: 12px;
+}
+
+.box_text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+@media screen and (max-width: 1301px) {
+    .boxes {
+        justify-content: space-around;
+    }
+}
+
+/* ---------------------------- Services section --------------------------*/
+
+.services {
+    background-color: #1E1E1E;
+    height: fit-content;
+}
+
+/* Heading of Services, Works, About, Testimonals sections */
+.section_p {
+    text-transform: uppercase;
+    color: #098A5B;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 15px;
+}
+
+.section_h {
+    padding-left: 85px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    color: white;
+}
+
+
+.section_text {
+    padding-top: 7rem;
+    position: relative;
+    margin-bottom: 35px;
+    width: 89%;
+}
+
+.section_text::before {
+    content: '';
+    position: absolute;
+    background-color: #098A5B;
+    width: 72px;
+    height: 2px;
+    bottom: 53px;
+    top: 129px;
+}
+
+/*------------------------------------------------------------------ */
+
+.services_item {
+    width: 341px;
+    min-height: 299px;
+    background: #313131;
+    border: 2px solid #098A5B;
+    padding: 50px 20px 60px 30px;
+
+}
+
+.services_box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 13rem;
+    position: relative;
+    color: white;
+}
+
+.services_box::after {
+    content: '';
+    position: absolute;
+    background-color: #098A5B;
+    height: 82px;
+    width: 2px;
+    top: 80%;
+    left: 50%;
+}
+
+@media screen and (max-width: 1432px) {
+
+    .services_box::after {
+        top: 88%;
+    }
+}
+
+@media screen and (max-width: 953px) {
+
+    .services_box::after {
+        top: 94%;
+    }
+
+    .services_box {
+        justify-content: center;
+    }
+}
+
+.services_box h2 {
+    margin: 40px 0px 20px 0px;
+    font-weight: 700;
+    font-size: 29px;
+    line-height: 35px;
+}
+
+.services_box p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+/* ---------------------------- Works section --------------------------*/
+
+.works {
+    background-color: #313131;
+    padding-bottom: 170px;
+}
+
+.section_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 45px;
+    min-width: 341px;
+    width: 100%;
+    position: relative;
+}
+
+
+
+
+.works_btn {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #098A5B;
+    border: 2px solid #098A5B;
+    padding: 17px 23px 17px 23px;
+    background-color: transparent;
+    min-width: 112px;
+
+}
+
+.works_btn:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+    cursor: pointer;
+}
+
+
+.work_imgs {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.work_imgs img {
+    max-width: 100%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1439px) {
+    .hidden_img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 869px) {
+
+    ._container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+    }
+
+    .section_text {
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
+    .section_text::before {
+        display: none;
+    }
+
+    .section_h {
+        padding: 0px;
+    }
+
+    .section_wrap {
+        flex-direction: column;
+        min-width: 0px;
+        align-items: center;
+    }
+
+}
+
+
+/*---------------------------About section ------------------------ */
+
+.about {
+    background-color: #1E1E1E;
+}
+
+/* Делаем сетку для раздела с фото/Making grid for images section */
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;
+    height: 574px;
+    padding-bottom: 36px;
+
+}
+
+.div_img1 {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.div_img2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.div_img3 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.div_box {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.div_img1 {
+    background-image: url(./resources/about_first.svg);
+}
+
+.div_img2 {
+    background-image: url(./resources/about_second.svg);
+}
+
+.div_img3 {
+    background-image: url(./resources/about_third.svg);
+}
+
+.text_about {
+    color: #FFFFFF;
+    margin: 0px 0px 6px 22px;
+}
+
+/* Текст внутри картинок/Text inside images  */
+
+.text_about h2 {
+    font-weight: 700;
+    font-size: 29px;
+    line-height: 35px;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+    padding-bottom: 6px;
+}
+
+.text_about p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Who we are ,  Philosophy, How we work sections */
+
+.comments {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    color: #fff;
+    position: relative;
+    padding-bottom: 150px;
+}
+
+.about_container::after {
+    content: '';
+    position: absolute;
+    background-color: #098A5B;
+    width: 2px;
+    height: 82px;
+    left: 50%;
+    top: 90%;
+}
+
+.comments_item {
+    max-width: 33%;
+    max-height: 151px;
+    padding-top: 10px;
+}
+
+.comments_p {
+    padding: 1rem;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+
+}
+
+.comments_h {
+    padding-left: 1rem;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.comments_line {
+    border-right: 2px solid #098A5B;
+}
+
+@media screen and (max-width:899px) {
+    .parent {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .div_img1 {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .div_img2 {
+        grid-area: 2 / 1 / 3 / 3;
+    }
+
+    .div_img3 {
+        grid-area: 3 / 1 / 4 / 3;
+    }
+
+    .div_box {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .text_about {
+        margin: none;
+    }
+
+    .about_container::after {
+        display: none;
+    }
+
+    .comments {
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .comments_line {
+        border: none;
+    }
+
+    .comments_item {
+        max-width: 100%;
+
+    }
+
+    .comments_h {
+        padding-bottom: 2%;
+        border-bottom: 2px solid #098A5B;
+    }
+}
+
+/* Testimonials section */
+
+.testimonials {
+    background-color: #313131;
+    height: 54rem;
+}
+
+.testimonials_container {
+    display: flex;
+    gap: 3rem;
+}
+
+
+.testimonials_boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    padding-top: 45px;
+    z-index: 1;
+    color: white;
+    background: rgb(9, 138, 91);
+    background: linear-gradient(0deg, rgba(9, 138, 91, 0) 19%, rgba(16, 16, 23, 1) 19%);
+}
+
+.comma {
+    display: block;
+    max-height: 45px;
+}
+
+.stars {
+    display: block;
+    margin: 0 auto;
+    max-width: 135px;
+
+}
+
+.test_logo {
+    display: block;
+    max-height: 62px;
+    z-index: 2;
+}
+
+.testimonials_boxes p {
+    padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+@media screen and (max-width:819px) {
+    .test_box_hidden {
+        display: none;
+    }
+}
+
+/* Blog section / Latest news */
+
+.news {
+    background-color: #1E1E1E;
+    margin: 0 auto;
+    padding-top: 89px;
+    padding-bottom: 191px;
+    position: relative;
+}
+
+.news::after {
+    position: absolute;
+    content: '';
+    width: 2px;
+    background-color: #098A5B;
+    height: 82px;
+    left: 50%;
+    top: 91%;
+}
+
+.news_text {
+    text-align: center;
+}
+
+.news_h {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    color: #fff;
+}
+
+.news_p {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #098A5B;
+}
+
+/* Blog. Boxes */
+
+.news_boxes {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 67px;
+    color: #fff;
+}
+
+.news_box {
+    border: 2px solid #098A5B;
+    max-width: 467px;
+}
+
+.news_p1 {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    padding-top: 19px;
+    padding-bottom: 26px;
+}
+
+.news_ph {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+}
+
+.p2 {
+    padding-top: 38px;
+}
+
+.news_read {
+    background-color: transparent;
+    color: white;
+    padding: 14px 17px 14px 17px;
+    border: 2px solid #098A5B;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    cursor: pointer;
+
+}
+
+.news_read:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.text_box {
+    padding: 24px 35px 24px 19px;
+}
+
+
+@media screen and (max-width:1431px) {
+
+    .news_boxes {
+
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:948px) {
+    .news::after {
+        display: none;
+    }
+}
+
+
+/* Make enquiry section */
+
+.enquiry {
+    text-align: center;
+    padding-top: 93px;
+    padding-bottom: 126px;
+    background: #1E1E1E;
+}
+
+.enquiry_h {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    color: #FFFFFF;
+    padding-bottom: 38px;
+}
+
+.enquiry_btn {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: 2px solid #098A5B;
+    padding: 23px 48px;
+}
+
+.enquiry_btn:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+/* Footer  */
+
+.footer {
+    padding-top: 3rem;
+    background-color: #1E1E1E;
+
+}
+
+.footer_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 91%;
+    gap: 6rem;
+}
+
+.footer_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer_wrap {
+    display: flex;
+    padding-bottom: 60px;
+}
+
+.footer_h {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    padding-bottom: 24px;
+}
+
+.footer_p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #fff;
+    margin: 12px;
+}
+
+.footer_hr {
+    width: 100%;
+    border: 1px solid #098A5B;
+}
+
+.footer_social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 26px;
+    padding-bottom: 49px;
+}
+
+.social_imgs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 21px;
+}
+
+.copyright {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 999px) {
+
+    .footer_logo {
+        display: none;
+    }
+
+    .footer_info {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 869px) {
+
+    .footer_wrap {
+        margin: 0 auto;
+    }
+
+    .footer_info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+
+    }
+}
