@@ -20,4 +20,4 @@ $('.da_section,.services,.works,.about,.testimonials,.news,.enquiry,.footer').cl
         $('body').toggleClass('lock');
     }
     console.log('kek');
-})
+});
