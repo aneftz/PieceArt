@@ -882,6 +882,8 @@ li:last-child:hover {
     gap: 15px;
     padding-top: 67px;
     color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .news_box {
