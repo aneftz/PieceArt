@@ -3,7 +3,6 @@ $('.burger_menu').click(function(event) {
     $('.burger_menu,.menu').toggleClass('active');
     $('body').toggleClass('lock');
 })
-});
 
 $('.da_section,.services,.works,.about,.testimonials,.news,.enquiry,.footer').click((event)=>{
     if ($('.burger_menu')[0].classList.contains('active'))
@@ -21,3 +20,5 @@ $('.da_section,.services,.works,.about,.testimonials,.news,.enquiry,.footer').cl
     }
     console.log('kek');
 });
+});
+
