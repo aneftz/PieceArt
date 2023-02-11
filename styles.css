@@ -841,8 +841,7 @@ li:last-child:hover {
 .news {
     background-color: #1E1E1E;
     margin: 0 auto;
-    padding-top: 89px;
-    padding-bottom: 191px;
+    padding: 89px 15px 191px 15px;
     position: relative;
 }
 
@@ -886,9 +885,16 @@ li:last-child:hover {
 }
 
 .news_box {
+    display: flex;
+    flex-direction: column;
     border: 2px solid #098A5B;
-    max-width: 467px;
+    max-width: 421px;
+    min-width: 111px;
 }
+
+
+
+
 
 .news_p1 {
     font-weight: 400;
